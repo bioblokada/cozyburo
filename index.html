@@ -30,11 +30,13 @@ body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--font-ma
 .slide.on{opacity:1;animation:drift 26s ease-in-out forwards}
 @keyframes drift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.09) translate(-1.2%,-.8%)}}
 .veil{position:absolute;inset:0;background:
-  radial-gradient(ellipse 70% 60% at 50% 50%,rgba(0,0,0,.22),transparent 70%),
-  linear-gradient(to bottom,rgba(0,0,0,.28),transparent 30%,transparent 65%,rgba(0,0,0,.55));}
+  radial-gradient(ellipse 70% 60% at 50% 50%,rgba(0,0,0,.30),transparent 70%),
+  linear-gradient(to bottom,rgba(0,0,0,.30),rgba(0,0,0,.12) 30%,rgba(0,0,0,.12) 65%,rgba(0,0,0,.62));}
 .grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none}
 
 .center{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 16px}
+.center .fade{position:relative;padding:clamp(40px,7vw,90px) clamp(40px,9vw,140px)}
+.center .fade::before{content:"";position:absolute;inset:-10% -20%;z-index:-1;background:radial-gradient(ellipse at center,rgba(12,9,7,.62) 0%,rgba(12,9,7,.45) 40%,rgba(12,9,7,0) 72%);filter:blur(6px)}
 .mark{font-weight:500;font-size:clamp(34px,7vw,88px);letter-spacing:.42em;text-indent:.42em;line-height:1.08;text-shadow:0 2px 30px rgba(0,0,0,.35)}
 .mark span{display:block}
 .line{font-family:var(--font-line);font-style:italic;font-weight:400;font-size:clamp(19px,2.4vw,30px);letter-spacing:.02em;margin-top:clamp(18px,3vw,34px);opacity:.92;text-shadow:0 1px 20px rgba(0,0,0,.45)}
