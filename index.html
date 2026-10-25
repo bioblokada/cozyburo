@@ -90,17 +90,31 @@ body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--font-ma
   var mobile=Math.min(innerWidth,innerHeight)<700;
   function url(p){return p+(mobile?'-m':'')+'.jpg';}
   var slides=[document.getElementById('s0'),document.getElementById('s1')],cur=0;
-  var i=Math.floor(Math.random()*photos.length);
-  function show(n){
-    var next=(cur+1)%2,im=new Image();
-    im.onload=function(){
-      slides[next].style.backgroundImage='url("'+im.src+'")';
-      slides[cur].classList.remove('on'); void slides[next].offsetWidth; slides[next].classList.add('on'); cur=next;
-    };
-    im.src=url(photos[n]); i=n;
+  var i=Math.floor(Math.random()*photos.length),timer=null;
+  // preload: start with a random photo as soon as it's ready, load the rest in background
+  var loaded={},cache={};
+  function load(n,cb){
+    if(loaded[n]){cb&&cb();return;}
+    var im=new Image();
+    im.onload=function(){loaded[n]=true;cache[n]=im.src;cb&&cb();};
+    im.onerror=function(){loaded[n]=false;cb&&cb();};
+    im.src=url(photos[n]);
   }
-  show(i);
-  setInterval(function(){show((i+1)%photos.length)},12000);
+  function paint(n){
+    var next=(cur+1)%2;
+    slides[next].style.backgroundImage='url("'+cache[n]+'")';
+    slides[cur].classList.remove('on'); void slides[next].offsetWidth; slides[next].classList.add('on'); cur=next; i=n;
+  }
+  function advance(){
+    var n=i,tries=0;
+    do{ n=(n+1)%photos.length; tries++; }while(loaded[n]!==true && tries<photos.length);
+    if(loaded[n]===true) paint(n);
+  }
+  load(i,function(){
+    if(loaded[i]) paint(i);
+    for(var k=0;k<photos.length;k++) if(k!==i) load(k);
+    timer=setInterval(advance,12000);
+  });
 
   // film grain
   var c=document.getElementById('grain'),g=c.getContext('2d');
