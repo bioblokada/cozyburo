@@ -194,7 +194,7 @@ def build_index():
 <main>
 <section class="block wrap" id="projects"><div class="head"><span class="n">01</span><h2>Коммерческие пространства</h2><span class="cnt">%d объектов</span></div>
 <div class="grid">%s</div>
-<div class="more">%s</div></section>
+%s</section>
 <section class="block wrap"><div class="head"><span class="n">02</span><h2>Частные пространства</h2></div>
 <div class="grid one">%s</div></section>
 <section class="block wrap" id="buro"><div class="buro"><div class="ph"><img data-src="img/buro/elena.jpg" alt="Елена Друмлевич"></div>
@@ -204,7 +204,7 @@ def build_index():
 <div class="sig">Елена Друмлевич<small>Основатель и&nbsp;ведущий дизайнер</small></div></div></div></section>
 %s</main>
 """ % (len(com) + len(MORE_COMMERCIAL), ''.join(card(p) for p in com),
-       ''.join('<div><span>%s</span><span>%s · %s</span></div>' % (esc(m['name']), esc(m['address']), esc(m['year'])) for m in MORE_COMMERCIAL),
+       ('<div class="more">%s</div>' % ''.join('<div><span>%s</span><span>%s · %s</span></div>' % (esc(m['name']), esc(m['address']), esc(m['year'])) for m in MORE_COMMERCIAL)) if MORE_COMMERCIAL else '',
        ''.join(card(p) for p in prv), CONTACTS)
     h += JS_COMMON + """<script>
 (function(){
