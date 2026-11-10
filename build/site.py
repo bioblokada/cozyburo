@@ -34,12 +34,12 @@ img{display:block;max-width:100%}
 @keyframes drift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.06) translate(-1%,.6%)}}
 .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,8,.42) 0%,rgba(10,9,8,.10) 35%,rgba(10,9,8,.14) 65%,rgba(15,13,11,.92) 100%)}
 .grain{position:absolute;inset:0;opacity:.09;pointer-events:none;mix-blend-mode:overlay}
-.hero .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid rgba(241,236,228,.55);background:rgba(14,11,9,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:clamp(26px,4vw,44px) clamp(28px,5vw,64px);max-width:calc(100% - 40px)}
+.hero .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid rgba(241,236,228,.5);background:rgba(14,11,9,.14);backdrop-filter:blur(2.5px);-webkit-backdrop-filter:blur(2.5px);padding:clamp(22px,3vw,36px) clamp(22px,3.4vw,44px);max-width:calc(100% - 40px)}
 .hero .center:after{content:'';position:absolute;inset:6px;border:1px solid rgba(241,236,228,.18);pointer-events:none}
-.mark{font:400 clamp(30px,5.4vw,66px)/1 var(--sans);letter-spacing:.42em;text-indent:.42em;text-transform:uppercase}
+.mark{font:400 clamp(28px,4.6vw,56px)/1 var(--sans);letter-spacing:.42em;text-indent:.42em;text-transform:uppercase}
 .mark b{font-weight:500}
 .mark small{display:block;font-size:.5em;letter-spacing:.9em;text-indent:.9em;opacity:.8;margin-top:.55em}
-.line{font:italic 400 clamp(20px,2.6vw,30px)/1.3 var(--serif);margin-top:22px;opacity:.92}
+.line{font:italic 400 clamp(19px,2.2vw,27px)/1.3 var(--serif);margin-top:20px;opacity:.92}
 .hero .foot{position:absolute;left:0;right:0;bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(16px,3vw,48px);font:400 10px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.7}
 .hero .foot .cap{font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;opacity:.95;transition:opacity .6s}
 .scroll{position:absolute;left:50%;bottom:70px;width:1px;height:48px;background:linear-gradient(var(--ink),transparent);opacity:.6;animation:pulse 2.4s ease-in-out infinite}
@@ -95,6 +95,10 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;justify
 .phead .back{font:400 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .3s}
 .phead .back:hover{opacity:1}
 .phead h1{font:300 clamp(40px,6.4vw,92px)/1.02 var(--serif);margin-top:26px;letter-spacing:-.005em}
+.phead .logo{margin-top:34px;height:clamp(72px,11vw,150px);width:auto;max-width:min(520px,80vw);object-fit:contain;object-position:left}
+.phead .logo+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.phead{position:relative}
+.phead .sub{font:italic 300 clamp(26px,3.4vw,44px)/1.1 var(--serif);margin-top:18px;opacity:.85}
 .phead h1 i{font-style:italic;opacity:.8}
 .phead .meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:22px;font:400 11px/1.6 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.6}
 .phead .desc{margin-top:30px;max-width:62ch;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.75;opacity:.86}
@@ -227,12 +231,12 @@ def build_project(p, prev, nxt):
     for it in items[1:]:
         gal += '<a href="../img/%s/%02d.jpg" data-w="%d" data-h="%d"><img data-src="../img/%s/%02d-s.jpg" width="%d" height="%d" alt="%s"></a>' % (
             p['slug'], it['i'], it['w'], it['h'], p['slug'], it['i'], it['w'], it['h'], esc(name))
-    h += """<main class="wrap"><div class="phead"><a class="back" href="../#projects">← Все проекты</a>%s<div class="meta">%s</div><!--desc--></div>
+    h += """<main class="wrap"><div class="phead"><a class="back" href="../#projects">← Все проекты</a>%s%s<div class="meta">%s</div><!--desc--></div>
 <a class="lead" href="../img/%s/00.jpg"><img src="../img/%s/00.jpg" alt="%s"></a>
 <div class="gal">%s</div>
 <div class="pn">%s%s</div></main>
 <div class="lb" id="lb"><button class="x" aria-label="Закрыть">×</button><button class="p" aria-label="Назад">‹</button><button class="nx" aria-label="Вперёд">›</button><img alt=""><div class="c" id="lbc"></div></div>
-%s""" % (title_html(p, 'h1'), meta, p['slug'], p['slug'], esc(name), gal,
+%s""" % ((('<img class="logo" src="../img/logo/%s.png" alt="%s">' % (p['logo'], esc(name))) + (('<div class="sub">%s</div>' % esc(p['sub'])) if p.get('sub') else '')) if p.get('logo') else '', title_html(p, 'h1'), meta, p['slug'], p['slug'], esc(name), gal,
          '<a href="%s.html"><small>Предыдущий</small><span>%s</span></a>' % (prev['slug'], esc(full_name(prev))) if prev else '',
          '<a class="next" href="%s.html"><small>Следующий</small><span>%s</span></a>' % (nxt['slug'], esc(full_name(nxt))) if nxt else '',
          CONTACTS)
