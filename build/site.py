@@ -18,17 +18,15 @@ a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 .wrap{width:min(1360px,100% - clamp(32px,6vw,96px));margin:0 auto}
 /* nav */
-.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(16px,3vw,48px);transition:background .5s,padding .5s;mix-blend-mode:normal}
-.nav.solid{background:rgba(15,13,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px clamp(16px,3vw,48px)}
-.nav .brand,.nav ul{border:1px solid rgba(241,236,228,.38);background:rgba(14,11,9,.18);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:11px 16px;transition:border-color .5s,background .5s}
-.nav.solid .brand,.nav.solid ul{border-color:transparent;background:transparent;padding:6px 0}
+.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(16px,3vw,48px);background:rgba(14,11,9,.22);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid rgba(241,236,228,.14);transition:background .5s,padding .5s}
+.nav.solid{background:rgba(15,13,11,.84);border-bottom-color:rgba(241,236,228,.08);padding:14px clamp(16px,3vw,48px)}
 .nav .brand{font:500 12px/1 var(--sans);letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;white-space:nowrap}
 .nav .brand span{font-weight:300}
 .nav ul{display:flex;gap:clamp(18px,3vw,40px);list-style:none;margin:0}
 .nav ul a{font:400 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.9;transition:opacity .3s;padding:4px 0;position:relative;text-shadow:0 1px 8px rgba(0,0,0,.4)}
 .nav ul a:after{content:'';position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--ink);transition:right .4s}
 .nav ul a:hover{opacity:1}.nav ul a:hover:after{right:0}
-@media(max-width:640px){.nav{padding:14px 12px}.nav ul{gap:14px}.nav ul a{font-size:11px;letter-spacing:.14em}.nav .brand{font-size:11px;letter-spacing:.22em;text-indent:.22em}.nav .brand,.nav ul{padding:10px 12px}}
+@media(max-width:640px){.nav{padding:16px 16px}.nav ul{gap:16px}.nav ul a{font-size:11px;letter-spacing:.12em}.nav .brand{font-size:11px;letter-spacing:.22em;text-indent:.22em}.hero .foot{flex-direction:column;align-items:flex-start;gap:8px}.hero .foot span:last-child{white-space:nowrap}}
 /* hero */
 .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#0a0908}
 .slide{position:absolute;inset:-4%;background-size:cover;background-position:center;opacity:0;transition:opacity 2.2s ease;will-change:opacity,transform;filter:sepia(.14) saturate(.95)}
