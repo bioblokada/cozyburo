@@ -20,8 +20,8 @@ img{display:block;max-width:100%}
 /* nav */
 .nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(16px,3vw,48px);transition:background .5s,padding .5s;mix-blend-mode:normal}
 .nav.solid{background:rgba(15,13,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px clamp(16px,3vw,48px)}
-.nav .brand{font:500 12px/1 var(--sans);letter-spacing:.42em;text-indent:.42em;text-transform:uppercase}
-.nav .brand span{opacity:.6}
+.nav .brand{font:500 12px/1 var(--sans);letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;white-space:nowrap}
+.nav .brand span{font-weight:300}
 .nav ul{display:flex;gap:clamp(18px,3vw,40px);list-style:none}
 .nav ul a{font:400 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.8;transition:opacity .3s;padding:6px 0;position:relative}
 .nav ul a:after{content:'';position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--ink);transition:right .4s}
@@ -36,10 +36,10 @@ img{display:block;max-width:100%}
 .grain{position:absolute;inset:0;opacity:.09;pointer-events:none;mix-blend-mode:overlay}
 .hero .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid rgba(241,236,228,.5);background:rgba(14,11,9,.14);backdrop-filter:blur(2.5px);-webkit-backdrop-filter:blur(2.5px);padding:clamp(22px,3vw,36px) clamp(22px,3.4vw,44px);max-width:calc(100% - 40px)}
 .hero .center:after{content:'';position:absolute;inset:6px;border:1px solid rgba(241,236,228,.18);pointer-events:none}
-.mark{font:400 clamp(28px,4.6vw,56px)/1 var(--sans);letter-spacing:.42em;text-indent:.42em;text-transform:uppercase}
-.mark b{font-weight:500}
-.mark small{display:block;font-size:.5em;letter-spacing:.9em;text-indent:.9em;opacity:.8;margin-top:.55em}
-.line{font:italic 400 clamp(19px,2.2vw,27px)/1.3 var(--serif);margin-top:20px;opacity:.92}
+.mark{font:500 clamp(34px,6.4vw,80px)/1.08 var(--sans);letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.mark span{display:block}
+.mark small{display:block;font-size:clamp(9px,.9vw,12px);font-weight:400;letter-spacing:.6em;text-indent:.6em;opacity:.7;margin-top:16px;line-height:1}
+.line{font:italic 400 clamp(17px,2.2vw,27px)/1.3 var(--serif);margin-top:20px;opacity:.92;white-space:nowrap}
 .hero .foot{position:absolute;left:0;right:0;bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(16px,3vw,48px);font:400 10px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.7}
 .hero .foot .cap{font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;opacity:.95;transition:opacity .6s}
 .scroll{position:absolute;left:50%;bottom:70px;width:1px;height:48px;background:linear-gradient(var(--ink),transparent);opacity:.6;animation:pulse 2.4s ease-in-out infinite}
@@ -138,7 +138,7 @@ HEAD = """<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name=
 <style>{css}</style>
 {ld}</head><body>"""
 
-NAV = """<nav class="nav{solid}" id="nav"><a class="brand" href="{base}">Cozy <span>Buro</span></a>
+NAV = """<nav class="nav{solid}" id="nav"><a class="brand" href="{base}">Cozy<span>Buro</span></a>
 <ul><li><a href="{base}#projects">Проекты</a></li><li><a href="{base}#buro">Бюро</a></li><li><a href="{base}#contacts">Контакты</a></li></ul></nav>"""
 
 CONTACTS = """<section class="contacts wrap" id="contacts">
@@ -188,7 +188,7 @@ def build_index():
                     url=SITE + '/', og=SITE + '/img/rusalochka-asia/cover.jpg', css=CSS, ld='<script type="application/ld+json">%s</script>' % ld)
     h += NAV.format(solid='', base='')
     h += """<header class="hero"><div class="slide" id="s0"></div><div class="slide" id="s1"></div><div class="veil"></div><canvas class="grain" id="g"></canvas>
-<div class="center fade"><h1 class="mark"><b>Cozy</b> Buro<small>Interiors</small></h1><p class="line">Интерьеры с характером</p></div>
+<div class="center fade"><h1 class="mark"><span>Cozy</span><span>Buro</span><small>Interiors</small></h1><p class="line">Интерьеры с характером</p></div>
 <div class="scroll"></div>
 <div class="foot"><span class="cap" id="cap"></span><span>Moscow · since 2020</span></div></header>
 <main>
