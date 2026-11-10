@@ -32,7 +32,7 @@ PROJECTS = [
          cover=6, photos=[6, 2, 7, 0, 5, 8, 11, 1, 3, 4, 9, 12, 10], section='commercial'),
     dict(slug='apartment', name='Квартира', kind='Жилой интерьер', year='',
          address='Москва', folder='квартира',
-         cover=37, photos=[37, 38, 31, 22, 42, 2, 5, 14, 19, 24, 27, 43, 17, 33], section='private'),
+         cover=37, photos=[37, 38, 31, 22, 42, 2, 5, 14, 19, 24, 27, 43, 17, 33], section='private', teaser='Эксклюзив журнала «Интерьер+Дизайн»'),
 ]
 
 # Объекты без фото — только строкой

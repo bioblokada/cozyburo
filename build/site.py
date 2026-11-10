@@ -70,6 +70,14 @@ section.block{padding:clamp(72px,10vw,140px) 0 0}
 .more{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--line)}
 .more div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font:400 11px/1.6 var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.6}
 .more div span:last-child{text-align:right}
+/* teaser */
+.card.teaser{cursor:default}
+.card.teaser .ph img{filter:saturate(.8)}
+.card.teaser:hover img{transform:none}
+.card.teaser .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:rgba(15,13,11,.28)}
+.card.teaser .ov i{font:italic 300 clamp(18px,2vw,26px)/1.2 var(--serif);opacity:.9}
+.card.teaser .ov b{margin-top:12px;font:700 clamp(26px,3.6vw,48px)/1 var(--sans);letter-spacing:-.01em;text-transform:uppercase}
+.card.teaser .ov span{margin-top:16px;font:400 10px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;opacity:.75}
 /* buro */
 .buro{display:grid;grid-template-columns:5fr 6fr;gap:clamp(28px,5vw,80px);align-items:center}
 @media(max-width:820px){.buro{grid-template-columns:1fr}}
@@ -171,6 +179,11 @@ def full_name(p):
 
 def card(p):
     meta = ' · '.join(x for x in [p['kind'], p['address']] if x)
+    if p.get('teaser'):
+        return ('<div class="card teaser"><div class="ph"><img data-src="img/%s-cover-m.jpg" alt="%s" width="960" height="640">'
+                '<div class="ov"><i>Эксклюзивная публикация в журнале</i><b>Interior+Design</b><span>Скоро покажем</span></div></div>'
+                '<div class="t">%s<span class="y">%s</span></div><div class="m">%s</div></div>') % (
+            p['slug'], esc(full_name(p)), title_html(p), esc(p['year']), esc(meta))
     return ('<a class="card" href="p/%s.html"><div class="ph"><img data-src="img/%s/cover-m.jpg" alt="%s" width="960" height="640"></div>'
             '<div class="t">%s<span class="y">%s</span></div><div class="m">%s</div></a>') % (
         p['slug'], p['slug'], esc(full_name(p)), title_html(p), esc(p['year']), esc(meta))
@@ -221,7 +234,7 @@ var c=document.getElementById('g'),x=c.getContext('2d');function gr(){c.width=in
     open(os.path.join(ROOT, 'index.html'), 'w').write(h)
 
 def build_project(p, prev, nxt):
-    items = META[p['slug']]
+    items = META[p["slug"]]
     name = full_name(p)
     desc = '%s · %s · %s. Интерьер — Cozy Buro, бюро Елены Друмлевич.' % (p['kind'], p['address'], p['year']) if p['year'] else '%s · Интерьер — Cozy Buro.' % p['kind']
     h = HEAD.format(title='%s — Cozy Buro' % name, desc=desc, url='%s/p/%s.html' % (SITE, p['slug']),
@@ -256,10 +269,11 @@ var sx=0;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{
     open(os.path.join(ROOT, 'p', p['slug'] + '.html'), 'w').write(h)
 
 build_index()
-for n, p in enumerate(PROJECTS):
-    build_project(p, PROJECTS[n - 1] if n else None, PROJECTS[n + 1] if n + 1 < len(PROJECTS) else None)
+PUB = [p for p in PROJECTS if not p.get('teaser')]
+for n, p in enumerate(PUB):
+    build_project(p, PUB[n - 1] if n else None, PUB[n + 1] if n + 1 < len(PUB) else None)
 # sitemap + robots
-urls = [SITE + '/'] + ['%s/p/%s.html' % (SITE, p['slug']) for p in PROJECTS]
+urls = [SITE + '/'] + ['%s/p/%s.html' % (SITE, p['slug']) for p in PUB]
 open(os.path.join(ROOT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>%s</loc></url>' % u for u in urls) + '</urlset>')
 open(os.path.join(ROOT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n' % SITE)
 print('ok', len(PROJECTS))
