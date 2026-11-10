@@ -42,8 +42,10 @@ img{display:block;max-width:100%}
 .line{font:italic 400 clamp(17px,2.2vw,27px)/1.3 var(--serif);margin-top:20px;opacity:.92;white-space:nowrap}
 .hero .foot{position:absolute;left:0;right:0;bottom:28px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 clamp(16px,3vw,48px);font:400 10px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.7}
 .hero .foot .cap{font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;opacity:.95;transition:opacity .6s}
-.scroll{position:absolute;left:50%;bottom:70px;width:1px;height:48px;background:linear-gradient(var(--ink),transparent);opacity:.6;animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.2}50%{transform:scaleY(1);opacity:.7}}
+.scroll{position:absolute;left:50%;bottom:64px;width:28px;height:44px;margin-left:-14px;display:block;opacity:.85;animation:fly 2.2s cubic-bezier(.45,0,.55,1) infinite;filter:drop-shadow(0 1px 6px rgba(0,0,0,.5))}
+.scroll svg{width:100%;height:100%;display:block}
+@keyframes fly{0%{transform:translateY(-10px);opacity:0}30%{opacity:.9}70%{opacity:.9}100%{transform:translateY(12px);opacity:0}}
+@media(max-width:640px){.scroll{bottom:112px}}
 .fade{opacity:0;animation:in 1.6s .4s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes in{to{opacity:1}}
 /* sections */
@@ -202,6 +204,7 @@ def build_index():
     h += NAV.format(solid='', base='')
     h += """<header class="hero"><div class="slide" id="s0"></div><div class="slide" id="s1"></div><div class="veil"></div><canvas class="grain" id="g"></canvas>
 <div class="center fade"><h1 class="mark"><span>Cozy</span><span>Buro</span><small>Interiors</small></h1><p class="line">Интерьеры с характером</p></div>
+<a class="scroll" href="#projects" aria-label="К проектам"><svg viewBox="0 0 28 44" fill="none" stroke="#f1ece4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v38M4 30l10 10 10-10"/></svg></a>
 <div class="foot"><span class="cap" id="cap"></span><span>Moscow · since 2020</span></div></header>
 <main>
 <section class="block wrap" id="projects"><div class="head"><span class="n">01</span><h2>Коммерческие пространства</h2><span class="cnt">%d объектов</span></div>
