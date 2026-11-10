@@ -29,7 +29,7 @@ PROJECTS = [
          cover=16, photos=[16, 10, 3, 15, 1, 2, 4, 7, 8, 9, 13, 5, 0], section='commercial'),
     dict(slug='shashlychnaya-paveletskaya', name='Горбуфет Шашлычная', logo='shashlychnaya', sub='Павелецкая', kind='Шашлычная', year='2025',
          address='Новокузнецкая, 39', folder='Павелецкая',
-         cover=6, photos=[6, 2, 7, 0, 5, 8, 11, 1, 3, 4, 9, 12, 10], section='commercial'),
+         cover=6, photos=[6, 2, 7, 0, 5, 8, 11, 1, 3, 4, 9, 12, 10], section='commercial', warm=True),
     dict(slug='apartment', name='Квартира', kind='Жилой интерьер', year='',
          address='Москва', folder='квартира',
          cover=37, photos=[37, 38, 31, 22, 42, 2, 5, 14, 19, 24, 27, 43, 17, 33], section='private', teaser='Эксклюзив журнала «Интерьер+Дизайн»'),

@@ -11,8 +11,21 @@ def find(folder, n):
     fs = sorted(glob.glob(os.path.join(SRC, folder, '%02d_*' % n)))
     return fs[0]
 
+from PIL import ImageEnhance
+def warmify(im):
+    r, g, b = im.split()
+    r = r.point(lambda v: min(255, int(v * 1.05 + 4)))
+    g = g.point(lambda v: min(255, int(v * 1.0)))
+    b = b.point(lambda v: int(v * 0.88))
+    im = Image.merge('RGB', (r, g, b))
+    im = ImageEnhance.Brightness(im).enhance(0.93)
+    im = ImageEnhance.Color(im).enhance(1.08)
+    im = ImageEnhance.Contrast(im).enhance(1.04)
+    return im
+WARM = False
 def save(im, path, long_side, q=82):
     im = ImageOps.exif_transpose(im).convert('RGB')
+    if WARM: im = warmify(im)
     w, h = im.size
     s = long_side / max(w, h)
     if s < 1:
@@ -22,6 +35,7 @@ def save(im, path, long_side, q=82):
 
 meta = {}
 for p in PROJECTS:
+    WARM = bool(p.get('warm'))
     d = os.path.join(OUT, p['slug']); os.makedirs(d, exist_ok=True)
     items = []
     for k, n in enumerate(p['photos']):
