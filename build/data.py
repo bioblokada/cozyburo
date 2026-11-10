@@ -18,7 +18,7 @@ PROJECTS = [
     dict(slug='shashlychnaya-pyatnitskaya', name='Горбуфет Шашлычная', logo='shashlychnaya', sub='Пятницкая', kind='Шашлычная', year='2023',
          address='Пятницкая, 16, стр. 1', folder='Пятницкая',
          cover=13, photos=[13, 9, 14, 0, 2, 6, 19, 16, 1, 3, 11, 12, 5, 10], section='commercial'),
-    dict(slug='shashlychnaya-kutuzovskaya', name='Горбуфет Шашлычная', logo='shashlychnaya', sub='Кутузовская', kind='Шашлычная', year='2024',
+    dict(slug='shashlychnaya-kutuzovskaya', name='Горбуфет Шашлычная', logo='shashlychnaya', sub='Кутузовская', kind='Шашлычная', year='2025',
          address='Кутузовский проспект, 36А', folder='Кутуза',
          cover=14, photos=[14, 17, 19, 10, 16, 2, 9, 13, 1, 6, 12, 4, 18], section='commercial'),
     dict(slug='rusalochka-asia', name='Русалочка Азия', logo='rusalochka-asia', kind='Азиатский ресторан', year='2025',
@@ -31,7 +31,7 @@ PROJECTS = [
 
 # Объекты без фото — только строкой
 MORE_COMMERCIAL = [
-    dict(name='Горбуфет Шашлычная · Павелецкая', address='Новокузнецкая, 39', year='2023'),
+    dict(name='Горбуфет Шашлычная · Павелецкая', address='Новокузнецкая, 39', year='2025'),
     dict(name='Горбуфет Шашлычная · Маяковская', address='2-я Тверская-Ямская, 2', year='2024'),
 ]
 
