@@ -92,15 +92,16 @@ section.block{padding:clamp(72px,10vw,140px) 0 0}
 footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:400 10px/1.6 var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.45}
 /* project page */
 .phead{padding:clamp(120px,16vw,190px) 0 clamp(28px,4vw,48px)}
-.phead .back{font:400 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .3s}
+.phead .back{display:inline-block;font:400 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .3s}
 .phead .back:hover{opacity:1}
 .phead h1{font:300 clamp(40px,6.4vw,92px)/1.02 var(--serif);margin-top:26px;letter-spacing:-.005em}
-.phead .logo{margin-top:34px;height:clamp(72px,11vw,150px);width:auto;max-width:min(520px,80vw);object-fit:contain;object-position:left}
-.phead .logo+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.phead .idb{display:flex;width:max-content;flex-direction:column;align-items:flex-start;max-width:100%}
+.phead .logo{margin-top:34px;width:100%;height:auto;max-height:clamp(70px,9vw,120px);object-fit:contain;object-position:left bottom}
+.phead .idb.haslogo h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .phead{position:relative}
 .phead .sub{font:italic 300 clamp(26px,3.4vw,44px)/1.1 var(--serif);margin-top:18px;opacity:.85}
 .phead h1 i{font-style:italic;opacity:.8}
-.phead .meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:22px;font:400 11px/1.6 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+.phead .meta{display:flex;flex-wrap:wrap;gap:8px 28px;width:max-content;max-width:100%;margin-top:22px;font:400 11px/1.6 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.6}
 .phead .desc{margin-top:30px;max-width:62ch;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.75;opacity:.86}
 .lead{aspect-ratio:16/9;overflow:hidden;background:#1a1613}
 .lead img{width:100%;height:100%;object-fit:cover}
@@ -231,12 +232,12 @@ def build_project(p, prev, nxt):
     for it in items[1:]:
         gal += '<a href="../img/%s/%02d.jpg" data-w="%d" data-h="%d"><img data-src="../img/%s/%02d-s.jpg" width="%d" height="%d" alt="%s"></a>' % (
             p['slug'], it['i'], it['w'], it['h'], p['slug'], it['i'], it['w'], it['h'], esc(name))
-    h += """<main class="wrap"><div class="phead"><a class="back" href="../#projects">← Все проекты</a>%s%s<div class="meta">%s</div><!--desc--></div>
+    h += """<main class="wrap"><div class="phead"><a class="back" href="../#projects">← Все проекты</a><div class="idb%s">%s%s<div class="meta">%s</div></div><!--desc--></div>
 <a class="lead" href="../img/%s/00.jpg"><img src="../img/%s/00.jpg" alt="%s"></a>
 <div class="gal">%s</div>
 <div class="pn">%s%s</div></main>
 <div class="lb" id="lb"><button class="x" aria-label="Закрыть">×</button><button class="p" aria-label="Назад">‹</button><button class="nx" aria-label="Вперёд">›</button><img alt=""><div class="c" id="lbc"></div></div>
-%s""" % ((('<img class="logo" src="../img/logo/%s.png" alt="%s">' % (p['logo'], esc(name))) + (('<div class="sub">%s</div>' % esc(p['sub'])) if p.get('sub') else '')) if p.get('logo') else '', title_html(p, 'h1'), meta, p['slug'], p['slug'], esc(name), gal,
+%s""" % ((' haslogo' if p.get('logo') else ''), (('<img class="logo" src="../img/logo/%s.png" alt="%s">' % (p['logo'], esc(name))) + (('<div class="sub">%s</div>' % esc(p['sub'])) if p.get('sub') else '')) if p.get('logo') else '', title_html(p, 'h1'), meta, p['slug'], p['slug'], esc(name), gal,
          '<a href="%s.html"><small>Предыдущий</small><span>%s</span></a>' % (prev['slug'], esc(full_name(prev))) if prev else '',
          '<a class="next" href="%s.html"><small>Следующий</small><span>%s</span></a>' % (nxt['slug'], esc(full_name(nxt))) if nxt else '',
          CONTACTS)

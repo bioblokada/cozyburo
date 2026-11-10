@@ -89,15 +89,16 @@ section.block{padding:clamp(72px,10vw,140px) 0 0}
 footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:400 10px/1.6 var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.45}
 /* project page */
 .phead{padding:clamp(120px,16vw,190px) 0 clamp(28px,4vw,48px)}
-.phead .back{font:400 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .3s}
+.phead .back{display:inline-block;font:400 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .3s}
 .phead .back:hover{opacity:1}
 .phead h1{font:300 clamp(40px,6.4vw,92px)/1.02 var(--serif);margin-top:26px;letter-spacing:-.005em}
-.phead .logo{margin-top:34px;height:clamp(72px,11vw,150px);width:auto;max-width:min(520px,80vw);object-fit:contain;object-position:left}
-.phead .logo+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.phead .idb{display:flex;width:max-content;flex-direction:column;align-items:flex-start;max-width:100%}
+.phead .logo{margin-top:34px;width:100%;height:auto;max-height:clamp(70px,9vw,120px);object-fit:contain;object-position:left bottom}
+.phead .idb.haslogo h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .phead{position:relative}
 .phead .sub{font:italic 300 clamp(26px,3.4vw,44px)/1.1 var(--serif);margin-top:18px;opacity:.85}
 .phead h1 i{font-style:italic;opacity:.8}
-.phead .meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:22px;font:400 11px/1.6 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+.phead .meta{display:flex;flex-wrap:wrap;gap:8px 28px;width:max-content;max-width:100%;margin-top:22px;font:400 11px/1.6 var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.6}
 .phead .desc{margin-top:30px;max-width:62ch;font-weight:300;font-size:clamp(15px,1.25vw,17px);line-height:1.75;opacity:.86}
 .lead{aspect-ratio:16/9;overflow:hidden;background:#1a1613}
 .lead img{width:100%;height:100%;object-fit:cover}
@@ -123,7 +124,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;justify
 @media(prefers-reduced-motion:reduce){.slide.on{animation:none}.fade{animation:none;opacity:1}.scroll{animation:none}}
 </style>
 </head><body><nav class="nav solid" id="nav"><a class="brand" href="../">Cozy <span>Buro</span></a>
-<ul><li><a href="../#projects">Проекты</a></li><li><a href="../#buro">Бюро</a></li><li><a href="../#contacts">Контакты</a></li></ul></nav><main class="wrap"><div class="phead"><a class="back" href="../#projects">← Все проекты</a><img class="logo" src="../img/logo/rusalochka-asia.png" alt="Русалочка Азия"><h1>Русалочка Азия</h1><div class="meta"><span>Азиатский ресторан</span><span>Ходынский бульвар, 20А</span><span>2025</span></div><!--desc--></div>
+<ul><li><a href="../#projects">Проекты</a></li><li><a href="../#buro">Бюро</a></li><li><a href="../#contacts">Контакты</a></li></ul></nav><main class="wrap"><div class="phead"><a class="back" href="../#projects">← Все проекты</a><div class="idb haslogo"><img class="logo" src="../img/logo/rusalochka-asia.png" alt="Русалочка Азия"><h1>Русалочка Азия</h1><div class="meta"><span>Азиатский ресторан</span><span>Ходынский бульвар, 20А</span><span>2025</span></div></div><!--desc--></div>
 <a class="lead" href="../img/rusalochka-asia/00.jpg"><img src="../img/rusalochka-asia/00.jpg" alt="Русалочка Азия"></a>
 <div class="gal"><a href="../img/rusalochka-asia/01.jpg" data-w="1536" data-h="1024"><img data-src="../img/rusalochka-asia/01-s.jpg" width="1536" height="1024" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/02.jpg" data-w="1536" data-h="1024"><img data-src="../img/rusalochka-asia/02-s.jpg" width="1536" height="1024" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/03.jpg" data-w="1800" data-h="1200"><img data-src="../img/rusalochka-asia/03-s.jpg" width="1800" height="1200" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/04.jpg" data-w="1800" data-h="1200"><img data-src="../img/rusalochka-asia/04-s.jpg" width="1800" height="1200" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/05.jpg" data-w="1800" data-h="1200"><img data-src="../img/rusalochka-asia/05-s.jpg" width="1800" height="1200" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/06.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/06-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/07.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/07-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/08.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/08-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/09.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/09-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/10.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/10-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/11.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/11-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/12.jpg" data-w="1800" data-h="1200"><img data-src="../img/rusalochka-asia/12-s.jpg" width="1800" height="1200" alt="Русалочка Азия"></a><a href="../img/rusalochka-asia/13.jpg" data-w="1200" data-h="1800"><img data-src="../img/rusalochka-asia/13-s.jpg" width="1200" height="1800" alt="Русалочка Азия"></a></div>
 <div class="pn"><a href="shashlychnaya-kutuzovskaya.html"><small>Предыдущий</small><span>Горбуфет Шашлычная · Кутузовская</span></a><a class="next" href="apartment.html"><small>Следующий</small><span>Квартира</span></a></div></main>
